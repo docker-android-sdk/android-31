@@ -14,6 +14,7 @@ ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/32.0.0"
 ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
 ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
+ENV PATH "${PATH}:${ANDROID_HOME}/ndk/23.1.7779620"
 
 RUN dpkg --add-architecture i386 && \
     apt-get update -yqq && \
@@ -32,7 +33,8 @@ RUN /opt/tools/entrypoint.sh built-in
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "cmdline-tools;latest"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "build-tools;32.0.0"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platform-tools"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android-31"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "system-images;android-31;google_apis;x86_64"
+RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android-32"
+RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "ndk;23.1.7779620"
+
 
 CMD /opt/tools/entrypoint.sh built-in
