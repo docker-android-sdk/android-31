@@ -17,8 +17,10 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag android-ndk-builder
 
-  list:
-    needs: build
+list:
+  needs: build
+  build:
+    runs-on: ubuntu-latest
     steps:
     - name: List packages
       run: docker run --rm android-ndk-builder:latest sdkmanager --list
