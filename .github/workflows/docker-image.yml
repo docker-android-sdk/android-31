@@ -19,8 +19,8 @@ jobs:
 
   list:
     needs: build
-    build:
-      runs-on: ubuntu-latest
-      steps:
+
+    runs-on: ubuntu-latest
+    steps:
       - name: List packages
         run: docker run --rm android-ndk-builder:latest sdkmanager --list
