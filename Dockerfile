@@ -37,4 +37,8 @@ RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "ndk;23.1.7779620"
 
 
+
+# Go to workspace
+RUN mkdir -p /opt/ws
+WORKDIR /opt/ws
 CMD /opt/tools/entrypoint.sh built-in
