@@ -16,5 +16,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag android-ndk-builder
+
+  list:
+    needs: build
+    steps:
     - name: List packages
-      run: docker run -it --rm android-ndk-builder:latest sdkmanager --list
+      run: docker run --rm android-ndk-builder:latest sdkmanager --list
