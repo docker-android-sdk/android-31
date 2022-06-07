@@ -6,6 +6,7 @@ ENV ANDROID_HOME      /opt/android-sdk-linux
 ENV ANDROID_SDK_HOME  ${ANDROID_HOME}
 ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
 ENV ANDROID_SDK       ${ANDROID_HOME}
+ENV GRADLE_VERSION    "7.4.2"
 
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
@@ -14,6 +15,7 @@ ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/32.0.0"
 ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
 ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
+ENV PATH "${PATH}:/opt/gradle/gradle-${GRADLE_VERSION}/bin"
 
 RUN dpkg --add-architecture i386 && \
     apt-get update -yqq && \
@@ -35,4 +37,10 @@ RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platform-tools"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android-31"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "system-images;android-31;google_apis;x86_64"
 
+# Install Gradle
+RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp
+RUN unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
+RUN rm /tmp/gradle-${GRADLE_VERSION}-bin.zip
+
 CMD /opt/tools/entrypoint.sh built-in
+
