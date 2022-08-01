@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: Docker build
+- name: docker-build
   image: plugins/docker
   pull: never
   settings:
